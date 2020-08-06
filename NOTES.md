@@ -1,6 +1,35 @@
 # Culled from Brad Traversy's Udemy class entitled 'MERN Stack Front to Back.'
 # This repository encapsulates the client-side section of the class.
 
+```javascript
+  npm i -g create-react-app
+  npm i -g npm
+  create-react-app xyz
+```
+- Add a proxy value to configuration:
+```javascript
+  },
+  "proxy": "http://localhost:5000",
+  "eslintConfig": {
+```
+```javascript
+  npm run start
+```
+- To run two (2) projects within the same solution:
+```javascript
+  npm i concurrently
+```
+- And add a client script:
+```javascript
+  "client-install": "npm install --prefix client",
+  "client": "npm start --prefix client",
+  "dev": "concurrently \"npm run server\" \"npm run client\""
+```
+
+```javascript
+  npm i react-router-dom
+```
+
 - Hack Bootstrap, via CDNs, into the html:
   - https://getbootstrap.com/docs/4.1/getting-started/introduction/
 
