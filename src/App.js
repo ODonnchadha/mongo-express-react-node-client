@@ -13,6 +13,7 @@ import Footer from './components/layout/Footer';
 import PrivateRoute from './components/common/PrivateRoute'
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/create-profile/CreateProfile';
+import NoOp from './components/no-op/NoOp';
 import Profile from './components/profile/Profile';
 import Profiles from './components/profiles/Profiles';
 import EditProfile from './components/edit-profile/EditProfile';
@@ -65,6 +66,7 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/profiles" component={Profiles} />
               <Route exact path="/profile/:handle" component={Profile} />
+              <Route exact path="/not-found" component={NoOp} />
             </div>
             <Footer />
           </div>
