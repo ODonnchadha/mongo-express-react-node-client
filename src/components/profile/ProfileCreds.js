@@ -37,11 +37,11 @@ class ProfileCreds extends Component {
     ));
 
     return (
-      <div class="row">
-      <div class="col-md-6">
-        <h3 class="text-center text-info">Experience</h3>
+      <div className="row">
+      <div className="col-md-6">
+        <h3 className="text-center text-info">Experience</h3>
         {experiences.length > 0 ? (
-          <ul class="list-group">
+          <ul className="list-group">
             {experiences}
           </ul>
         ) : (
@@ -50,10 +50,10 @@ class ProfileCreds extends Component {
           </p>
         )}
       </div>
-      <div class="col-md-6">
-        <h3 class="text-center text-info">Education</h3>
+      <div className="col-md-6">
+        <h3 className="text-center text-info">Education</h3>
         {compulsory.length > 0 ? (
-          <ul class="list-group">
+          <ul className="list-group">
             {compulsory}
           </ul>
         ) : (
