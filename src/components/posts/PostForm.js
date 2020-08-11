@@ -17,13 +17,28 @@ class PostForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentWillReceiveProps(props) {
+    if (props.errors) {
+      this.setState({ errors: props.errors });
+    }
+  }
+
   onChange(e) {
     this.setState({[e.target.name]: e.target.value});
   }
 
   onSubmit(e) {
     e.preventDefault();
-    console.log('X');
+
+    const { user } = this.props.auth;
+    const data = {
+      text: this.state.text,
+      name: user.name,
+      avatar: user.avatar
+    };
+
+    this.props.addPost(data);
+    this.setState({ text: '' });
   }
 
   render() {
@@ -42,11 +57,11 @@ class PostForm extends Component {
                 value={this.state.text}
                 onChange={this.onChange}
                 error={errors.text}
-                placeholder="Create a post">
-
-              </TextAreaFieldGroup>
+                placeholder="Create a post" />
             </div>
-            <button type="submit" className="btn btn-dark">Submit</button>
+            <button type="submit" className="btn btn-dark">
+              Submit
+            </button>
           </form>
         </div>
       </div>
@@ -55,4 +70,15 @@ class PostForm extends Component {
   }
 }
 
-export default PostForm;
+PostForm.propTypes = {
+  addPost: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(mapStateToProps, { addPost })(PostForm);

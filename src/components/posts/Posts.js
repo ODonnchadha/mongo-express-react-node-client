@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { addPost } from '../../actions/postActions';
 import PostForm from './PostForm';
-import Spinner from '../common/Spinner';
-import PropTypes from 'prop-types';
 
 class Posts extends Component {
   render() {
