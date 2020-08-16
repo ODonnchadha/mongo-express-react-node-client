@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
+import { deletePost } from '../../actions/postActions';
 
 class PostItem extends Component {
 
   onDelete(id) {
-    console.log(id);
+    this.props.deletePost(id);
   }
 
   render() {
@@ -60,6 +61,7 @@ class PostItem extends Component {
 
 PostItem.propTypes = {
   auth: PropTypes.object.isRequired,
+  deletePost: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired
 }
 
@@ -67,4 +69,4 @@ const mapStateToPorps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToPorps)(PostItem);
+export default connect(mapStateToPorps, { deletePost })(PostItem);
