@@ -1,6 +1,22 @@
 import { ADD_POST, DELETE_POST, GET_ERRORS, GET_POST, GET_POSTS, POST_LOADING } from './types';
 import axios from 'axios';
 
+export const addComment = (id, comment) => dispatch => {
+  axios.post(`/api/posts/comment/${id}`, comment)
+  .then(response => {
+    dispatch({
+      type: GET_POST,
+      payload: response.data
+    })
+  })
+  .catch(err => 
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  );
+};
+
 export const addLike = (id) => dispatch => {
   axios.post(`/api/posts/like/${id}`)
   .then(response => dispatch(getPosts()))
