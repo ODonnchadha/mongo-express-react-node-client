@@ -1,4 +1,4 @@
-import { ADD_POST, DELETE_POST, GET_ERRORS, GET_POSTS, POST_LOADING } from './types';
+import { ADD_POST, DELETE_POST, GET_ERRORS, GET_POST, GET_POSTS, POST_LOADING } from './types';
 import axios from 'axios';
 
 export const addLike = (id) => dispatch => {
@@ -40,6 +40,23 @@ export const deletePost = (id) => dispatch => {
     dispatch({
       type: GET_ERRORS,
       payload: err.response.data
+    })
+  );
+};
+
+export const getPost = (id) => dispatch => {
+  dispatch(setPostLoading());
+  axios.get(`/api/posts/${id}`)
+  .then(response => {
+    dispatch({
+      type: GET_POST,
+      payload: response.data
+    })
+  })
+  .catch(err => 
+    dispatch({
+      type: GET_POST,
+      payload: null
     })
   );
 };

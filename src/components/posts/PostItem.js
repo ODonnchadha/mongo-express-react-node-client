@@ -21,7 +21,7 @@ class PostItem extends Component {
   }
 
   render() {
-    const { auth, post } = this.props;
+    const { auth, showActions, post } = this.props;
 
     return (
         <div className="card card-body mb-3">
@@ -42,6 +42,8 @@ class PostItem extends Component {
               <p className="lead">
                 {post.text}
               </p>
+
+              {showActions ? (<span>
               <button onClick={this.onLike.bind(this, post._id)} type="button" className="btn btn-light mr-1">
                 <i className={classnames('fas fa-thumbs-up', {'text-info':this.findUserLike(post.likes)})} >
                 </i>
@@ -61,12 +63,17 @@ class PostItem extends Component {
                 type="button" 
                 className="btn btn-danger mr-1">
                 <i className="fas fa-times" />
-              </button>) : null }
+              </button>) : null }</span>) : null}
+
             </div>
           </div>
         </div>
     )
   }
+}
+
+PostItem.defaultProps = {
+  showActions: true
 }
 
 PostItem.propTypes = {
