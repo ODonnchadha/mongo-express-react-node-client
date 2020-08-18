@@ -87,7 +87,7 @@
     heroku open
   ```
 
-  - Heroku deployment:
+  ## Heroku deployment:
     - https://devcenter.heroku.com/categories/deployment
 
     1. Securing our keys:
@@ -111,3 +111,18 @@
     - And then in .gitignore: Add /config/keys.dev.js.
   
   2. Heroku Setup:
+  - Create an account. Sans credit card.
+  - Install the Heroku toolbelt. (CLI.) Ensure that the %PATH% is modified.
+  - Heroku becomes a "remote" repository as we push from GitHub.
+  ```javascript
+    heroku login
+    heroku create
+  ```
+  - Setup application. 
+  - Place environment variables/Config Vars within settings. e.g.: MONGO_URI and SECRET_OR_KEY.
+  - Within deploy, wire Git repository with the "remote" command.
+    ```javascript
+      git push heroku master
+    ```
+  
+  3. Post-build Deployment:
