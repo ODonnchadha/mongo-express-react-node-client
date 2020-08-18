@@ -14,6 +14,8 @@ import PrivateRoute from './components/common/PrivateRoute'
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/create-profile/CreateProfile';
 import NoOp from './components/no-op/NoOp';
+import Post from './components/post/Post';
+import Posts from './components/posts/Posts';
 import Profile from './components/profile/Profile';
 import Profiles from './components/profiles/Profiles';
 import EditProfile from './components/edit-profile/EditProfile';
@@ -61,6 +63,12 @@ class App extends Component {
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/add-experience" component={AddExperience} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/feed" component={Posts} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/post/:id" component={Post} />
               </Switch>
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
