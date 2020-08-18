@@ -121,8 +121,33 @@
   - Setup application. 
   - Place environment variables/Config Vars within settings. e.g.: MONGO_URI and SECRET_OR_KEY.
   - Within deploy, wire Git repository with the "remote" command.
+
+  3. Post-build Deployment:
+  - Create the static assets: static/index.html is our UI entry.
+    ```javascript
+      npm run build
+    ```
+    - And then add to server.js:
+    ```javascript
+      const path = require('path');
+      if (process.env.NODE_ENV === 'production') {
+        app.use(express.static('client/build'));
+
+        app.get('*', (request, response) => {
+          response.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+        })
+      }
+    ```
+    - Now build the assets out on Heroku with a script. 
+    - NOTE: We need the devDependencies, thus the false flag.
+    - NOTE: The --prefix client would come more into play if both client & server were in the single project.
+      ```javascript
+      "scripts": {
+        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+      }
+    ```
     ```javascript
       git push heroku master
+      heroku open
     ```
-  
-  3. Post-build Deployment:
+    - Within settings/domains, you can add a domain and then draw the DNS association.
