@@ -82,8 +82,32 @@
       "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
     }
   ```
-
   ```javascript
     git push heroku master
     heroku open
   ```
+
+  - Heroku deployment:
+    - https://devcenter.heroku.com/categories/deployment
+
+    1. Securing our keys:
+    - Create two new files in config: key_dev.js and keys_prod.js.
+    within keys_prod.js:
+    ```javascript
+      module.exports = {
+        mongoURI: process.env.MONGO_URI,
+        secretOrKey: process.env.SECRET_OR_KEY,
+      };
+    ```
+    - The file, pushed to GitHub says nothing. The values are configured through the dashboard.
+    - Within keys.js:
+      ```javascript
+      if (process.env.NODE_ENV === 'production') {
+        module.exports = require('./keys_prod);
+      } else {
+        module.exports = require('./keys_dev);
+      }
+    ```
+    - And then in .gitignore: Add /config/keys.dev.js.
+  
+  2. Heroku Setup:
