@@ -84,8 +84,8 @@ PostItem.propTypes = {
   removeLike: PropTypes.func.isRequired
 }
 
-const mapStateToPorps = state => ({
+const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToPorps, { addLike, deletePost, removeLike })(PostItem);
+export default connect(mapStateToProps, { addLike, deletePost, removeLike })(PostItem);
